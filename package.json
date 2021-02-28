@@ -1,0 +1,15 @@
+{
+  "name": "telldus-dashboard",
+  "version": "1.0.0",
+  "description": "A dashboard for Telldus sensor data",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd ./server && npm install && cd ../client && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/Users/peter/git/telldus-dashboard.git/"
+  },
+  "author": "Peter Ahlstrom",
+  "license": "MIT"
+}

@@ -1,0 +1,7 @@
+{
+  "publicKey": "Your publicKey here...",
+  "privateKey": "Your privateKey here...",
+  "token": "Your token here...",
+  "tokenSecret": "Your tokenSecret here...",
+  "PORT": 3030
+}

@@ -4,8 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Sensor from './Sensor';
 import './Dashboard.css';
+import config from '../config.json';
 
-const SENSORS_URL = 'http://localhost:3030/sensors';
+const SENSORS_URL = `${config.SERVER_URL}/sensors`;
 
 interface ISensors {
   id: string;

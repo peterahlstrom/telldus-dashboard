@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './History.css';
 import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import SensorChart from './SensorChart';
+import config from '../config.json';
 
-const HISTORY_URL = 'http://localhost:3030/history';
+const HISTORY_URL = `${config.SERVER_URL}/history`;
 
 interface Props {
   match: {
@@ -73,12 +75,17 @@ const History: React.FC<Props> = ({ match, location }) => {
 
   const browserHistory = useHistory();
   return (
-    <div>
+    <div className="chart-container">
       <h1>{sensorName}</h1>
       <SensorChart histData={history} />
-      <button type="button" onClick={() => browserHistory.goBack()}>
+      <Button
+        variant="contained"
+        size="large"
+        color="primary"
+        onClick={() => browserHistory.goBack()}
+      >
         Back
-      </button>
+      </Button>
     </div>
   );
 };

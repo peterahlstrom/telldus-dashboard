@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import './Sensor.css';
+import config from '../config.json';
 
-const SENSORS_URL = 'http://localhost:3030/sensor';
+const SENSORS_URL = `${config.SERVER_URL}/sensor`;
 
 interface Sensor {
   id: string;

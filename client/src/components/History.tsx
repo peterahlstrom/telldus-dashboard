@@ -57,7 +57,7 @@ const History: React.FC<Props> = ({ match, location }) => {
     }
 
     return histReadings
-      .slice(Math.max(histReadings.length - 150, 0))
+      .slice(Math.max(histReadings.length - 250, 0)) // To be replaced by server filtering.
       .map((el: History) => ({
         date: el.date,
         temp: parseReading(el.data).temp,

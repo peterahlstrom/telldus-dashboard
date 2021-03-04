@@ -25,17 +25,27 @@ const chartConstants = {
 };
 
 const SensorChart: React.FC<Props> = ({ histData }) => {
-  const tickFormatter = (tick: string) => {
-    const out: string = new Date(tick)
-      .toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })
-      .slice(0, -1);
+  const makeDateString = (date: string) => {
+    let out = '';
+    if (date.length > 0) {
+      out = new Date(date)
+        .toLocaleDateString('sv-SE', {
+          day: 'numeric',
+          month: 'long',
+          weekday: 'short',
+        })
+        .slice(0, -1);
+    }
     return out;
   };
 
-  // const ticksArray: string[] = histData?.map(({ date }) => (
-  //   if date
-  // ))
+  const tickMap: boolean[] | undefined = histData
+    ?.map(({ date }) => makeDateString(date))
+    .map((date, i, self) => self.indexOf(date) === i);
 
+  const ticksArray: string[] | undefined = histData
+    ?.map(({ date }, i) => (tickMap![i] ? date : ''))
+    .filter((el) => el !== '');
   return (
     <div className="chart">
       <p>Temperature</p>
@@ -54,9 +64,8 @@ const SensorChart: React.FC<Props> = ({ histData }) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey="date"
-          // scale="time"
-          // ticks={['2021-02-25 00:00:00', '2021-02-26 00:00:00']}
-          tickFormatter={tickFormatter}
+          ticks={ticksArray}
+          tickFormatter={makeDateString}
         />
         <YAxis
           domain={[
@@ -93,8 +102,8 @@ const SensorChart: React.FC<Props> = ({ histData }) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey="date"
-          ticks={['2021-02-25 00:00:00', '2021-02-26 00:00:00']}
-          tickFormatter={tickFormatter}
+          ticks={ticksArray}
+          tickFormatter={makeDateString}
         />
         <YAxis
           domain={[
